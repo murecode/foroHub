@@ -2,8 +2,7 @@ package com.educational.forohub.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "answers")
@@ -15,11 +14,13 @@ public class Answer {
   private Long id;
   @Column
   private String message;
-  @Transient
+  @ManyToOne()
+  @JoinColumn(name = "topic_id")
   private Topic topic;
-  @Column
-  private LocalDateTime creationDate;
-  @Transient
+  @Column @Transient
+  private LocalDate creationDate;
+  @ManyToOne
+  @JoinColumn(name = "autor_id")
   private User autor;
   @Column
   private String solution;

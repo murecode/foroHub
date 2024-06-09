@@ -17,6 +17,6 @@ public class User {
   private String email;
   @Column
   private String password;
-  @Transient
+  @OneToMany
   private List<Profile> profiles;
 }

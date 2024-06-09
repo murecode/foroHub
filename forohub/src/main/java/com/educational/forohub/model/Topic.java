@@ -2,8 +2,7 @@ package com.educational.forohub.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,15 +17,17 @@ public class Topic {
   private String title;
   @Column
   private String message;
-  @Column
-  private LocalDateTime creationDate;
+  @Column @Transient
+  private LocalDate creationDate;
   @Transient
   private Status status;
-  @Transient
+  @OneToOne
+  @JoinColumn(name = "autor_id")
   private User autor;
-  @Transient
+  @OneToOne
+  @JoinColumn(name = "course_id")
   private Course course;
-  @Transient
+  @OneToMany(mappedBy = "topic")
   private List<Answer> answers;
 
 }
