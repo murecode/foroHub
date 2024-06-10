@@ -1,7 +1,6 @@
-package com.educational.forohub.model;
+package com.educational.forohub.bussines.user;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.util.List;
 

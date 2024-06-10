@@ -1,9 +1,6 @@
-package com.educational.forohub.model;
+package com.educational.forohub.bussines.course;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "courses")
@@ -13,6 +10,6 @@ public class Course {
   private Long id;
   @Column
   private String name;
-  @Transient
+  @Column
   private CourseCategory courseCategory;
 }

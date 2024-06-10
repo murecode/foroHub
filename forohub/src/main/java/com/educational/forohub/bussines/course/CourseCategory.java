@@ -1,4 +1,4 @@
-package com.educational.forohub.model;
+package com.educational.forohub.bussines.course;
 
 public enum CourseCategory {
   FRONTEND,
