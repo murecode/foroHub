@@ -24,15 +24,15 @@ class AnswerRepositoryTest {
 
   @Test
   void testAddAnswerToTopic() {
-    User user = entityManager.find(User.class, 2);
-    Topic topic = entityManager.find(Topic.class, 1);
+    var user = entityManager.find(User.class, 2);
+    Topic topic = entityManager.find(Topic.class, 5);
 
     Answer answer = new Answer();
     answer.setAutor(user);
     answer.setTopic(topic);
     answer.setCreationDate(LocalDate.now());
-    answer.setMessage("Esta es mi respuesta");
-    answer.setSolution("Tienes que crear un nuevo objeto");
+    answer.setMessage("Respuesta Topico 5");
+    answer.setSolution("Drop a la tabla en base de datos");
 
     answerRepo.save(answer);
 

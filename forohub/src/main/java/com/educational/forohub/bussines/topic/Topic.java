@@ -3,7 +3,10 @@ package com.educational.forohub.bussines.topic;
 import com.educational.forohub.bussines.answer.Answer;
 import com.educational.forohub.bussines.course.Course;
 import com.educational.forohub.bussines.user.User;
+import com.educational.forohub.bussines.user.UserData;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,20 +17,22 @@ public class Topic {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @Column
+  @Column(unique = true) @NotBlank
   private String title;
-  @Column
+  @Column @NotBlank
   private String message;
   @Column
   private LocalDate creationDate;
   @Column
   @Enumerated(EnumType.STRING)
   private Status status;
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "autor_id")
+  @NotNull
   private User autor;
   @OneToOne
   @JoinColumn(name = "course_id")
+  @NotNull
   private Course course;
   @OneToMany(mappedBy = "topic")
   private List<Answer> answers;

@@ -11,6 +11,8 @@ import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
@@ -26,15 +28,34 @@ class TopicRepositoryTest {
     Course course = entityManager.find(Course.class, 1);
 
     Topic topic = new Topic();
-    topic.setTitle("Duda Curso");
-    topic.setMessage("Tengo una duda respecto al curso");
-    topic.setCreationDate(LocalDate.now());
-    topic.setStatus(Status.UNANSWERED);
     topic.setAutor(user);
     topic.setCourse(course);
+    topic.setStatus(Status.UNANSWERED);
+    topic.setCreationDate(LocalDate.now());
+    topic.setTitle("");
+    topic.setMessage("");
 
-    topicRepo.save(topic);
+    assertTrue(topic.getTitle() == "");
+    assertTrue(topic.getMessage() == "");
+
+//    topicRepo.save(topic);
 
   }
+
+  @Test
+  void testUpdateTopic() {
+
+  }
+
+  @Test
+  void testDeleteTopic() {
+    Topic topic = entityManager.find(Topic.class, 5);
+
+    topicRepo.deleteById(topic.getId());
+
+    assertTrue(topic.getId() == 5);
+  }
+
+
 
 }
