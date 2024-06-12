@@ -10,21 +10,22 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class TopicData implements Serializable {
-  private String id;
+  private Long id;
   private String title;
   private String message;
-  private String creationDate;
+  /*@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")*/
+  private LocalDate creationDate;
   private String status;
   private String autor;
   private String course;
   private List<AnswerData> answers;
 
   public TopicData(
-          String id,
+          Long id,
           String title,
           String message,
           String autor,
-          String creationDate,
+          LocalDate creationDate,
           String status,
           String course,
           List<AnswerData> answers
@@ -39,11 +40,11 @@ public class TopicData implements Serializable {
     this.answers = answers;
   }
 
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -71,11 +72,11 @@ public class TopicData implements Serializable {
     this.autor = autor;
   }
 
-  public String getCreationDate() {
+  public LocalDate getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(String creationDate) {
+  public void setCreationDate(LocalDate creationDate) {
     this.creationDate = creationDate;
   }
 

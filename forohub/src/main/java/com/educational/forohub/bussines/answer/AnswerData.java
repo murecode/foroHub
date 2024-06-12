@@ -3,17 +3,18 @@ package com.educational.forohub.bussines.answer;
 import com.educational.forohub.bussines.user.UserData;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class AnswerData {
+public class AnswerData implements Serializable {
   private String message;
-  private String creationDate;
+  private LocalDate creationDate;
   private String autor;
   private String solution;
 
   public AnswerData(
           String message,
-          String creationDate,
+          LocalDate creationDate,
           String autor,
           String solution
   ) {
@@ -31,11 +32,11 @@ public class AnswerData {
     this.message = message;
   }
 
-  public String getCreationDate() {
+  public LocalDate getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(String creationDate) {
+  public void setCreationDate(LocalDate creationDate) {
     this.creationDate = creationDate;
   }
 

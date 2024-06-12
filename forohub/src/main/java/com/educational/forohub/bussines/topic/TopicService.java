@@ -2,6 +2,8 @@ package com.educational.forohub.bussines.topic;
 
 import com.educational.forohub.bussines.answer.AnswerData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,37 +16,37 @@ public class TopicService {
   @Autowired
   private TopicRepository topicRepo;
 
-  public List<TopicData> findAllTopics() {
-    List<Topic> topics = topicRepo.findAll();
-    return topics.stream().map(t -> new TopicData(
-            t.getId().toString(),
+  public Page<TopicData> findAllTopics(Pageable pageable) {
+    Page<Topic> topics = topicRepo.findAll(pageable);
+    return topics.map(t -> new TopicData(
+            t.getId(),
             t.getTitle(),
             t.getMessage(),
             t.getAutor().getName(),
-            t.getCreationDate().toString(),
+            t.getCreationDate(),
             t.getStatus().toString(),
             t.getCourse().getName(),
             t.getAnswers().stream().map(a -> new AnswerData(
                     a.getMessage(),
-                    a.getCreationDate().toString(),
+                    a.getCreationDate(),
                     a.getAutor().getName(),
                     a.getSolution()
             )).collect(Collectors.toList())
-    )).collect(Collectors.toList());
+    ));
   }
 
   public Optional<TopicData> findTopicById(long topicid) {
     return topicRepo.findById(topicid).map(t -> new TopicData(
-            t.getId().toString(),
+            t.getId(),
             t.getTitle(),
             t.getMessage(),
             t.getAutor().getName(),
-            t.getCreationDate().toString(),
+            t.getCreationDate(),
             t.getStatus().toString(),
             t.getCourse().getName(),
             t.getAnswers().stream().map(a -> new AnswerData(
                     a.getMessage(),
-                    a.getCreationDate().toString(),
+                    a.getCreationDate(),
                     a.getAutor().getName(),
                     a.getSolution()
             )).collect(Collectors.toList())

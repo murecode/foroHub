@@ -1,6 +1,10 @@
 package com.educational.forohub.bussines.topic;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +20,16 @@ public class TopicController {
   @Autowired
   private TopicService topicService;
 
-  @GetMapping("")
-  public ResponseEntity<List<TopicData>> getAllTopics() {
-    List<TopicData> topics = topicService.findAllTopics();
+  @GetMapping
+  public ResponseEntity<Page<TopicData>> getAllTopics(
+          @PageableDefault(
+                  page = 0,
+                  size = 10,
+                  sort = {"creationDate"},
+                  direction = Sort.Direction.ASC)
+          Pageable pageable
+  ) {
+    Page<TopicData> topics = topicService.findAllTopics(pageable);
     return ResponseEntity.ok(topics);
   }
 
