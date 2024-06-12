@@ -1,4 +1,4 @@
-package com.educational.forohub.bussines.topic;
+package com.educational.forohub.infra.repository;
 
 import com.educational.forohub.bussines.topic.Topic;
 import org.springframework.data.jpa.repository.JpaRepository;

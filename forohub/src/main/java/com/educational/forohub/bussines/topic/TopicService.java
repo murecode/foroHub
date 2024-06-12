@@ -1,15 +1,16 @@
 package com.educational.forohub.bussines.topic;
 
 import com.educational.forohub.bussines.answer.AnswerData;
+import com.educational.forohub.bussines.topic.dtos.TopicData;
+import com.educational.forohub.bussines.topic.dtos.TopicUpdateData;
+import com.educational.forohub.infra.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class TopicService {
@@ -35,8 +36,8 @@ public class TopicService {
     ));
   }
 
-  public Optional<TopicData> findTopicById(long topicid) {
-    return topicRepo.findById(topicid).map(t -> new TopicData(
+  public Optional<TopicData> findTopicById(long topicId) {
+    return topicRepo.findById(topicId).map(t -> new TopicData(
             t.getId(),
             t.getTitle(),
             t.getMessage(),
@@ -53,6 +54,32 @@ public class TopicService {
     ));
   }
 
+  public TopicUpdateData updateTopic(long topicId, TopicUpdateData topicData) {
+    Topic topic = topicRepo.getReferenceById(topicId);
+
+    if (topicData.getTitle() != null) {
+      topic.setTitle(topicData.getTitle());
+    }
+    if (topicData.getMessage() != null) {
+      topic.setMessage(topicData.getMessage());
+    }
+    if (topicData.getStatus() != null) {
+      topic.setStatus(topicData.getStatus());
+    }
+
+    Topic updatedTopic = topicRepo.save(topic);
+
+    return new TopicUpdateData(
+            topicData.getTitle(),
+            topicData.getMessage(),
+            topicData.getStatus()
+    );
+  }
+
+  public void deleteTopicById(long topicId) {
+    Topic topic = topicRepo.getReferenceById(topicId);
+    topicRepo.deleteById(topic.getId());
+  }
 
 
 }

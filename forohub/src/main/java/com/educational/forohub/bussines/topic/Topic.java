@@ -3,7 +3,6 @@ package com.educational.forohub.bussines.topic;
 import com.educational.forohub.bussines.answer.Answer;
 import com.educational.forohub.bussines.course.Course;
 import com.educational.forohub.bussines.user.User;
-import com.educational.forohub.bussines.user.UserData;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +24,7 @@ public class Topic {
   private LocalDate creationDate;
   @Column
   @Enumerated(EnumType.STRING)
-  private Status status;
+  private TopicStatus topicStatus;
   @ManyToOne
   @JoinColumn(name = "autor_id")
   @NotNull
@@ -34,7 +33,7 @@ public class Topic {
   @JoinColumn(name = "course_id")
   @NotNull
   private Course course;
-  @OneToMany(mappedBy = "topic")
+  @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE)
   private List<Answer> answers;
 
   public Long getId() {
@@ -69,12 +68,12 @@ public class Topic {
     this.creationDate = creationDate;
   }
 
-  public Status getStatus() {
-    return status;
+  public TopicStatus getStatus() {
+    return topicStatus;
   }
 
-  public void setStatus(Status status) {
-    this.status = status;
+  public void setStatus(TopicStatus topicStatus) {
+    this.topicStatus = topicStatus;
   }
 
   public User getAutor() {
@@ -108,7 +107,7 @@ public class Topic {
             ", title='" + title + '\'' +
             ", message='" + message + '\'' +
             ", creationDate=" + creationDate +
-            ", status=" + status +
+            ", status=" + topicStatus +
             ", autor=" + autor +
             ", course=" + course +
             ", answers=" + answers +

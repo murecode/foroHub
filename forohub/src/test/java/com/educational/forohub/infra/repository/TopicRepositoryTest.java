@@ -1,8 +1,11 @@
-package com.educational.forohub.bussines.topic;
+package com.educational.forohub.infra.repository;
 
 import com.educational.forohub.bussines.course.Course;
+import com.educational.forohub.bussines.topic.TopicStatus;
+import com.educational.forohub.bussines.topic.Topic;
 import com.educational.forohub.bussines.user.User;
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -30,13 +33,13 @@ class TopicRepositoryTest {
     Topic topic = new Topic();
     topic.setAutor(user);
     topic.setCourse(course);
-    topic.setStatus(Status.UNANSWERED);
+    topic.setStatus(TopicStatus.UNSOLVED);
     topic.setCreationDate(LocalDate.now());
     topic.setTitle("");
     topic.setMessage("");
 
-    assertTrue(topic.getTitle() == "");
-    assertTrue(topic.getMessage() == "");
+    Assertions.assertTrue(topic.getTitle() == "");
+    Assertions.assertTrue(topic.getMessage() == "");
 
 //    topicRepo.save(topic);
 
@@ -53,7 +56,7 @@ class TopicRepositoryTest {
 
     topicRepo.deleteById(topic.getId());
 
-    assertTrue(topic.getId() == 5);
+    Assertions.assertTrue(topic.getId() == 5);
   }
 
 

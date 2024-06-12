@@ -1,7 +1,9 @@
-package com.educational.forohub.bussines.answer;
+package com.educational.forohub.infra.repository;
 
+import com.educational.forohub.bussines.answer.Answer;
 import com.educational.forohub.bussines.topic.Topic;
 import com.educational.forohub.bussines.user.User;
+import com.educational.forohub.infra.repository.AnswerRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

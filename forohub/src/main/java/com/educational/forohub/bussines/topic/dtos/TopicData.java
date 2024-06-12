@@ -1,9 +1,11 @@
-package com.educational.forohub.bussines.topic;
+package com.educational.forohub.bussines.topic.dtos;
 
 import com.educational.forohub.bussines.answer.AnswerData;
 import com.educational.forohub.bussines.course.Course;
+import com.educational.forohub.bussines.topic.TopicStatus;
 import com.educational.forohub.bussines.user.UserData;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.time.LocalDate;
