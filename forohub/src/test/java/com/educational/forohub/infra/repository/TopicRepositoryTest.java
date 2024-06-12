@@ -38,8 +38,8 @@ class TopicRepositoryTest {
     topic.setTitle("");
     topic.setMessage("");
 
-    Assertions.assertTrue(topic.getTitle() == "");
-    Assertions.assertTrue(topic.getMessage() == "");
+    assertSame("", topic.getTitle());
+    assertSame("", topic.getMessage());
 
 //    topicRepo.save(topic);
 

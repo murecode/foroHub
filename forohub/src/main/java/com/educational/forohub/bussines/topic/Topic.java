@@ -16,9 +16,11 @@ public class Topic {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @Column(unique = true) @NotBlank
+  @Column(unique = true)
+  @NotBlank
   private String title;
-  @Column @NotBlank
+  @Column
+  @NotBlank
   private String message;
   @Column
   private LocalDate creationDate;
@@ -27,11 +29,9 @@ public class Topic {
   private TopicStatus topicStatus;
   @ManyToOne
   @JoinColumn(name = "autor_id")
-  @NotNull
   private User autor;
   @OneToOne
   @JoinColumn(name = "course_id")
-  @NotNull
   private Course course;
   @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE)
   private List<Answer> answers;

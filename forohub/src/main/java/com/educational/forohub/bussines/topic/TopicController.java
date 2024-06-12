@@ -1,7 +1,9 @@
 package com.educational.forohub.bussines.topic;
 
+import com.educational.forohub.bussines.topic.dtos.TopicCreateData;
 import com.educational.forohub.bussines.topic.dtos.TopicData;
 import com.educational.forohub.bussines.topic.dtos.TopicUpdateData;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +40,12 @@ public class TopicController {
 
   }
 
+  @PostMapping
+  public ResponseEntity<TopicData> createTopic(@RequestBody @Valid TopicCreateData topicBody) {
+    TopicData topicData = topicService.createTopic(topicBody);
+    return new ResponseEntity<>(topicData, HttpStatus.CREATED);
+  }
+
   @PatchMapping("/{id}")
   public ResponseEntity<TopicUpdateData> updateTopic(
           @PathVariable("id") long topicId,
@@ -47,8 +55,9 @@ public class TopicController {
   }
 
   @DeleteMapping("/{id}")
-  public void deleteTopic(@PathVariable("id") long topicId) {
+  public ResponseEntity<Void> deleteTopic(@PathVariable("id") long topicId) {
     topicService.deleteTopicById(topicId);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
 }
