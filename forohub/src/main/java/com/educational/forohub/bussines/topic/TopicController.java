@@ -37,7 +37,6 @@ public class TopicController {
     return topicService.findTopicById(topicId)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
-
   }
 
   @PostMapping
@@ -49,7 +48,7 @@ public class TopicController {
   @PatchMapping("/{id}")
   public ResponseEntity<TopicUpdateData> updateTopic(
           @PathVariable("id") long topicId,
-          @RequestBody TopicUpdateData topicData) {
+          @RequestBody @Valid TopicUpdateData topicData) {
     topicService.updateTopic(topicId, topicData);
     return new ResponseEntity<>(topicData, HttpStatus.OK);
   }

@@ -17,10 +17,8 @@ public class Topic {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(unique = true)
-  @NotBlank
   private String title;
   @Column
-  @NotBlank
   private String message;
   @Column
   private LocalDate creationDate;

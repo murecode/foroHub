@@ -6,9 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class TopicCreateData {
-  @NotNull
   private Long autor;
-  @NotNull
   private Long course;
   @NotBlank
   private String title;

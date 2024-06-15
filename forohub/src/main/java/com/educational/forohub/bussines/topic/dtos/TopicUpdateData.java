@@ -1,9 +1,12 @@
 package com.educational.forohub.bussines.topic.dtos;
 
 import com.educational.forohub.bussines.topic.TopicStatus;
+import jakarta.validation.constraints.NotBlank;
 
 public class TopicUpdateData {
+  @NotBlank
   private String title;
+  @NotBlank
   private String message;
   private TopicStatus topicStatus;
 
