@@ -1,5 +1,6 @@
-package com.educational.forohub.bussines.user;
+package com.educational.forohub.infra.security.model;
 
+import com.educational.forohub.bussines.user.Profile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -14,11 +15,13 @@ public class User {
   @Column
   private String name;
   @Column
+  private String username;
+  @Column
   private String email;
   @Column
   private String password;
-  @OneToMany
-  private List<Profile> profiles;
+/*  @OneToMany
+  private List<Profile> profiles;*/
 
   public Long getId() {
     return id;
@@ -52,11 +55,18 @@ public class User {
     this.password = password;
   }
 
-  public List<Profile> getProfiles() {
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+  /*  public List<Profile> getProfiles() {
     return profiles;
   }
 
   public void setProfiles(List<Profile> profiles) {
     this.profiles = profiles;
-  }
+  }*/
 }

@@ -1,7 +1,7 @@
 package com.educational.forohub.bussines.answer;
 
 import com.educational.forohub.bussines.topic.Topic;
-import com.educational.forohub.bussines.user.User;
+import com.educational.forohub.infra.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;

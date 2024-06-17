@@ -2,8 +2,7 @@ package com.educational.forohub.infra.repository;
 
 import com.educational.forohub.bussines.answer.Answer;
 import com.educational.forohub.bussines.topic.Topic;
-import com.educational.forohub.bussines.user.User;
-import com.educational.forohub.infra.repository.AnswerRepository;
+import com.educational.forohub.infra.security.model.User;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,7 @@ package com.educational.forohub.infra.repository;
 import com.educational.forohub.bussines.course.Course;
 import com.educational.forohub.bussines.topic.TopicStatus;
 import com.educational.forohub.bussines.topic.Topic;
-import com.educational.forohub.bussines.user.User;
+import com.educational.forohub.infra.security.model.User;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

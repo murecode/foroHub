@@ -2,10 +2,8 @@ package com.educational.forohub.bussines.topic;
 
 import com.educational.forohub.bussines.answer.Answer;
 import com.educational.forohub.bussines.course.Course;
-import com.educational.forohub.bussines.user.User;
+import com.educational.forohub.infra.security.model.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.List;

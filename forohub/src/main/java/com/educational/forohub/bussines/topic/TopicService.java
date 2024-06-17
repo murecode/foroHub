@@ -5,7 +5,7 @@ import com.educational.forohub.bussines.course.Course;
 import com.educational.forohub.bussines.topic.dtos.TopicCreateData;
 import com.educational.forohub.bussines.topic.dtos.TopicData;
 import com.educational.forohub.bussines.topic.dtos.TopicUpdateData;
-import com.educational.forohub.bussines.user.User;
+import com.educational.forohub.infra.security.model.User;
 import com.educational.forohub.infra.repository.CourseRepository;
 import com.educational.forohub.infra.repository.TopicRepository;
 import com.educational.forohub.infra.repository.UserRepository;
