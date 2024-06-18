@@ -1,14 +1,17 @@
 package com.educational.forohub.infra.security.model;
 
-import com.educational.forohub.bussines.user.Profile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -20,8 +23,6 @@ public class User {
   private String email;
   @Column
   private String password;
-/*  @OneToMany
-  private List<Profile> profiles;*/
 
   public Long getId() {
     return id;
@@ -62,11 +63,30 @@ public class User {
   public void setUsername(String username) {
     this.username = username;
   }
-  /*  public List<Profile> getProfiles() {
-    return profiles;
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority("USER"));
   }
 
-  public void setProfiles(List<Profile> profiles) {
-    this.profiles = profiles;
-  }*/
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
+
 }

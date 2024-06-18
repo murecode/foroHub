@@ -1,8 +1,5 @@
 package com.educational.forohub.bussines.answer;
 
-import com.educational.forohub.bussines.user.UserData;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
