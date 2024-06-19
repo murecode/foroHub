@@ -9,6 +9,7 @@ import com.educational.forohub.infra.security.model.User;
 import com.educational.forohub.infra.repository.CourseRepository;
 import com.educational.forohub.infra.repository.TopicRepository;
 import com.educational.forohub.infra.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -119,8 +120,12 @@ public class TopicService {
   }
 
   public void deleteTopicById(long topicId) {
-    Topic topic = topicRepo.getReferenceById(topicId);
-    topicRepo.deleteById(topic.getId());
+    Optional<Topic> topic = topicRepo.findById(topicId);
+    if (topic.isPresent()) {
+      topicRepo.deleteById(topic.get().getId());
+    } else {
+      throw new RuntimeException("El tópico que intentas eliminar no existe");
+    }
   }
 
 
