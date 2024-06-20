@@ -1,7 +1,9 @@
 package com.educational.forohub.bussines.topic;
 
+import com.educational.forohub.bussines.answer.dtos.AnswerCreateData;
+import com.educational.forohub.bussines.answer.dtos.AnswerReadData;
 import com.educational.forohub.bussines.topic.dtos.TopicCreateData;
-import com.educational.forohub.bussines.topic.dtos.TopicData;
+import com.educational.forohub.bussines.topic.dtos.TopicReadData;
 import com.educational.forohub.bussines.topic.dtos.TopicUpdateData;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class TopicController {
   private TopicService topicService;
 
   @GetMapping
-  public ResponseEntity<Page<TopicData>> getAllTopics(
+  public ResponseEntity<Page<TopicReadData>> getAllTopics(
           @PageableDefault(
                   page = 0,
                   size = 10,
@@ -28,21 +30,39 @@ public class TopicController {
                   direction = Sort.Direction.ASC)
           Pageable pageable
   ) {
-    Page<TopicData> topics = topicService.findAllTopics(pageable);
+    Page<TopicReadData> topics = topicService.findAllTopics(pageable);
     return ResponseEntity.ok(topics);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<TopicData> getTopic(@PathVariable("id") long topicId) {
+  public ResponseEntity<TopicReadData> getTopic(
+          @PathVariable("id") long topicId) {
     return topicService.findTopicById(topicId)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
   }
 
+  @GetMapping("/status={status}")
+  public ResponseEntity<Page<TopicReadData>> getTopicsByStatus(
+          @PageableDefault(page = 0, size = 5)
+          @PathVariable TopicStatus status, Pageable pageable
+  ) {
+    Page<TopicReadData> topics = topicService.findAllTopicsByStatus(status, pageable);
+    return ResponseEntity.ok(topics);
+  }
+
   @PostMapping
-  public ResponseEntity<TopicData> createTopic(@RequestBody @Valid TopicCreateData topicBody) {
-    TopicData topicData = topicService.createTopic(topicBody);
-    return new ResponseEntity<>(topicData, HttpStatus.CREATED);
+  public ResponseEntity<TopicReadData> createTopic(
+          @RequestBody @Valid TopicCreateData topicBody) {
+    TopicReadData topicReadData = topicService.createTopic(topicBody);
+    return new ResponseEntity<>(topicReadData, HttpStatus.CREATED);
+  }
+
+  @PostMapping("/add")
+  public ResponseEntity<AnswerReadData> addAnswerToTopic(
+          @RequestBody @Valid AnswerCreateData answerBody) {
+    AnswerReadData answerReadData = topicService.addAnswerToTopic(answerBody);
+    return new ResponseEntity<>(answerReadData, HttpStatus.CREATED);
   }
 
   @PatchMapping("/{id}")
@@ -54,7 +74,8 @@ public class TopicController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteTopic(@PathVariable("id") long topicId) {
+  public ResponseEntity<Void> deleteTopic(
+          @PathVariable("id") long topicId) {
     topicService.deleteTopicById(topicId);
     return new ResponseEntity<>(HttpStatus.OK);
   }

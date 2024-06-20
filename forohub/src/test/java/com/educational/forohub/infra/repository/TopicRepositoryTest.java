@@ -1,5 +1,6 @@
 package com.educational.forohub.infra.repository;
 
+import com.educational.forohub.bussines.answer.Answer;
 import com.educational.forohub.bussines.course.Course;
 import com.educational.forohub.bussines.topic.TopicStatus;
 import com.educational.forohub.bussines.topic.Topic;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,6 +24,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class TopicRepositoryTest {
   @Autowired
   private TopicRepository topicRepo;
+  @Autowired
+  private AnswerRepository answerRepo;
   @Autowired
   private EntityManager entityManager;
 
@@ -44,6 +48,23 @@ class TopicRepositoryTest {
 //    topicRepo.save(topic);
 
   }
+
+  @Test
+  void testAddAnswerToTopic() {
+    Topic topic = entityManager.find(Topic.class, 31);
+    User autor = entityManager.find(User.class, 2);
+
+    Answer answer = new Answer();
+    answer.setTopic(topic);
+    answer.setAutor(autor);
+    answer.setSolution("Esta es la solucion");
+    answer.setMessage("Este es el mensaje de la solucion");
+    answer.setCreationDate(LocalDate.now());
+
+    answerRepo.save(answer);
+
+  }
+
 
   @Test
   void testUpdateTopic() {

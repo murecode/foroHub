@@ -1,15 +1,15 @@
-package com.educational.forohub.bussines.answer;
+package com.educational.forohub.bussines.answer.dtos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class AnswerData implements Serializable {
+public class AnswerReadData implements Serializable {
   private String message;
   private LocalDate creationDate;
   private String autor;
   private String solution;
 
-  public AnswerData(
+  public AnswerReadData(
           String message,
           LocalDate creationDate,
           String autor,

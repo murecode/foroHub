@@ -1,12 +1,12 @@
 package com.educational.forohub.bussines.topic.dtos;
 
-import com.educational.forohub.bussines.answer.AnswerData;
+import com.educational.forohub.bussines.answer.dtos.AnswerReadData;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class TopicData implements Serializable {
+public class TopicReadData implements Serializable {
   private Long id;
   private String title;
   private String message;
@@ -15,9 +15,9 @@ public class TopicData implements Serializable {
   private String status;
   private String autor;
   private String course;
-  private List<AnswerData> answers;
+  private List<AnswerReadData> answers;
 
-  public TopicData(
+  public TopicReadData(
           Long id,
           String title,
           String message,
@@ -25,7 +25,7 @@ public class TopicData implements Serializable {
           LocalDate creationDate,
           String status,
           String course,
-          List<AnswerData> answers
+          List<AnswerReadData> answers
   ) {
     this.id = id;
     this.title = title;
@@ -93,11 +93,11 @@ public class TopicData implements Serializable {
     this.course = course;
   }
 
-  public List<AnswerData> getAnswers() {
+  public List<AnswerReadData> getAnswers() {
     return answers;
   }
 
-  public void setAnswers(List<AnswerData> answers) {
+  public void setAnswers(List<AnswerReadData> answers) {
     this.answers = answers;
   }
 
