@@ -1,7 +1,7 @@
 
 ---
 
-# Foro API REST
+# ForoHub API REST
 
 ## Descripción
 
@@ -61,15 +61,15 @@ Esta es una API REST para un foro de tecnología donde las personas pueden crear
 
 - **Tópicos**
     - `GET    /topics`: Listado de todos los tópicos.
-    - `GET    /topics/{id}`: Obtener un tópico por ID.
+    - `GET    /topics/{id}`: Detallar un tópico por ID.
+    - `GET    /topics/status={status}`: Listar tópicos por estado.
     - `POST   /topics`: Crear un nuevo tópico.
-    - `POST   /topics/{id}/answer`: Dar respuesta a un tópico.
+    - `POST   /topics/add`: Dar respuesta a un tópico.
     - `PATCH  /topics/{id}`: Actualizar un tópico existente.
     - `DELETE /topics/{id}`: Eliminar un tópico.
 
 - **Respuestas**
-    - `GET    /answers/{id}`: Listado respuesta por usuario ID.
-    - `PATCH  /answers/{id}`: Actualizar respuesta.
+    - `PUT  /answers/{id}`: Actualizar respuesta.
     - `DELETE /answers/{id}`: Eliminar repuesta.
 
 
