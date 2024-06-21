@@ -4,21 +4,32 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class AnswerReadData implements Serializable {
+  private long id;
   private String message;
   private LocalDate creationDate;
   private String autor;
   private String solution;
 
   public AnswerReadData(
+          Long id,
           String message,
           LocalDate creationDate,
           String autor,
           String solution
   ) {
+    this.id = id;
     this.message = message;
     this.creationDate = creationDate;
     this.autor = autor;
     this.solution = solution;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
   }
 
   public String getMessage() {

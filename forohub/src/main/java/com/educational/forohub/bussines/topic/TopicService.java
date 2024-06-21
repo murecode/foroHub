@@ -44,6 +44,7 @@ public class TopicService {
             t.getStatus().toString(),
             t.getCourse().getName(),
             t.getAnswers().stream().map(a -> new AnswerReadData(
+                    a.getId(),
                     a.getMessage(),
                     a.getCreationDate(),
                     a.getAutor().getName(),
@@ -63,6 +64,7 @@ public class TopicService {
             t.getStatus().toString(),
             t.getCourse().getName(),
             t.getAnswers().stream().map(a -> new AnswerReadData(
+                    a.getId(),
                     a.getMessage(),
                     a.getCreationDate(),
                     a.getAutor().getName(),
@@ -81,6 +83,7 @@ public class TopicService {
             t.getStatus().toString(),
             t.getCourse().getName(),
             t.getAnswers().stream().map(a -> new AnswerReadData(
+                    a.getId(),
                     a.getMessage(),
                     a.getCreationDate(),
                     a.getAutor().getName(),
@@ -137,6 +140,7 @@ public class TopicService {
     Answer a = answerRepo.save(answer);
 
     return new AnswerReadData(
+            a.getId(),
             a.getMessage(),
             a.getCreationDate(),
             a.getAutor().getName(),
@@ -157,7 +161,7 @@ public class TopicService {
       topic.setStatus(topicData.getStatus());
     }
 
-    Topic updatedTopic = topicRepo.save(topic);
+    topicRepo.save(topic);
 
     return new TopicUpdateData(
             topicData.getTitle(),
